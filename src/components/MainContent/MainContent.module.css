@@ -1,6 +1,6 @@
 .mainContent {
     flex: 1;
-    background-color: #ffffff;
+    background: transparent;
 }
 
 .container {
@@ -12,6 +12,7 @@
 .sectionTitle {
     font-size: 2.5rem;
     margin-bottom: 20px;
+    margin-top: 0px;
     color: #000000;
 }
 

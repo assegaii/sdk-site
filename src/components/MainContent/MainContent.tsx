@@ -48,6 +48,13 @@ const MainContent: React.FC = () => {
                     </div>
                 </div>
             </section>
+            <section>
+                <div>
+                    <h1>
+                        Продукция
+                    </h1>
+                </div>
+            </section>
         </main>
     );
 };
