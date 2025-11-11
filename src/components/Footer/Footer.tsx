@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
                     <div className={styles.logoSection}>
                         <img src={logo} alt="Логотип компании" className={styles.footerLogo} />
                         <h4>
-                            СДК - надёжный поставщик пиломатериалов по всей России.
+                            Надёжный поставщик пиломатериалов по всей России.
                         </h4>
                         <p className={styles.companyDescription}>
                             Мы предлагаем древесину только высокого качества: от доски и шпона до фанеры и щепы.
