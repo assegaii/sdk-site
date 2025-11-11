@@ -25,9 +25,8 @@ const Footer: React.FC = () => {
                     <h3 className={styles.sectionTitle}>Навигация</h3>
                     <nav className={styles.footerNav}>
                         <a href="/" className={styles.footerLink}>Главная</a>
-                        <a href="/about" className={styles.footerLink}>О компании</a>
                         <a href="/services" className={styles.footerLink}>Каталог</a>
-                        <a href="/contacts" className={styles.footerLink}>Контакты</a>
+                        <a href="/documents" className={styles.footerLink}>Документация</a>
                     </nav>
                 </div>
 

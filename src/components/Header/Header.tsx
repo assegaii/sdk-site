@@ -61,9 +61,8 @@ const Header: React.FC = () => {
                     </a>
                     <nav className={styles.headerNav}>
                         <a href="/" className={styles.navLink}>Главная</a>
-                        <a href="/about" className={styles.navLink}>О компании</a>
                         <a href="/catalog" className={styles.navLink}>Каталог</a>
-                        <a href="/contacts" className={styles.navLink}>Контакты</a>
+                        <a href="/documents" className={styles.navLink}>Документация</a>
                     </nav>
                     <button
                         onClick={() => setIsCartOpen(true)}
