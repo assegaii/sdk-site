@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { useCart } from '@contexts/CartContext';
 
+import { Flip, ToastContainer, toast } from 'react-toastify';
+
 import styles from './MainContent.module.css';
 import FeedbackCarousel from '@components/FeedbackCarousel/FeedbackCarousel';
 import AboutUs from '@components/AboutUs/AboutUs';
@@ -17,14 +19,25 @@ import WoodChips from '@assets/product-image/wood-chips.png';
 import type { Product, ProductVariant } from '@types';
 
 const MainContent: React.FC = () => {
-    // Используем типы из общего файла
     const [expandedProductId, setExpandedProductId] = useState<number | null>(null);
     const [selectedVariants, setSelectedVariants] = useState<{ [key: number]: string }>({});
     const [quantities, setQuantities] = useState<{ [variantId: string]: number }>({});
 
     const { addItem } = useCart();
+    //Уведы
+    const succesNotify = () => toast.success('Товар добавлен в корзину!', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Flip,
+    });
 
-    // Mock данные с использованием импортированных типов
+    // Mock данные 
     const products: Product[] = [
         {
             id: 1,
@@ -100,7 +113,6 @@ const MainContent: React.FC = () => {
             [productId]: variantId
         }));
 
-        // При выборе варианта устанавливаем количество 1, если его еще нет
         if (!quantities[variantId]) {
             setQuantities(prev => ({
                 ...prev,
@@ -112,7 +124,7 @@ const MainContent: React.FC = () => {
     const handleQuantityChange = (variantId: string, newQuantity: number) => {
         const variant = getAllVariants().find(v => v.id === variantId);
 
-        // Проверяем, чтобы количество не превышало остаток и было не меньше 1
+        // Проверка количества
         if (variant && newQuantity >= 1 && newQuantity <= variant.stock) {
             setQuantities(prev => ({
                 ...prev,
@@ -138,7 +150,7 @@ const MainContent: React.FC = () => {
         addItem(product, variant, quantity);
 
         // Можно показать уведомление вместо alert
-        alert(`Добавлено в корзину: ${product.name} - ${variant.dimensions} (${quantity} шт)`);
+        succesNotify();
     };
 
     const getSelectedVariant = (productId: number) => {
@@ -158,6 +170,7 @@ const MainContent: React.FC = () => {
 
     return (
         <main className={styles.mainContent}>
+            <ToastContainer />
             <FeedbackCarousel />
             <AboutUs />
 
