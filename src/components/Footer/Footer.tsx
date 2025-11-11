@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Footer.module.css';
 
-import logo from '../../assets/logoLight.png';
+import logo from '@assets/logoLight.png';
 
 const Footer: React.FC = () => {
 
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                     <div className={styles.contactInfo}>
                         <div className={styles.contactItem}>
                             <span className={styles.contactLabel}>Адрес:</span>
-                            <span className={styles.contactText}>г. Томск, ул. Примерная, д. 123</span>
+                            <span className={styles.contactText}>г. Томск, ул. Кузовлевский тракт, 2Б ст31 </span>
                         </div>
                         <div className={styles.contactItem}>
                             <span className={styles.contactLabel}>Телефон:</span>

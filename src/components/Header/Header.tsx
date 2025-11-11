@@ -1,50 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Header.module.css';
 
-import logo from '../../assets/logo.png';
-import shopIcon from '../../assets/icons/shopIcon.png';
-import ShopingCart, { type CartItem } from '../ShopingCart/ShopingCart';
-
+import logo from '@assets/logo.png';
+import shopIcon from '@assets/icons/shopIcon.png';
+import ShopingCart from '@components/ShopingCart/ShopingCart';
+import { useCart } from '@contexts/CartContext'; // Создадим этот алиас
 
 const Header: React.FC = () => {
-    const [isCartOpen, setIsCartOpen] = useState(false);
-    const [cartItems, setCartItems] = useState<CartItem[]>([
-        {
-            id: '1',
-            name: 'Доска обрезная',
-            price: 2500,
-            quantity: 2,
-            dimensions: '50x150x6000 мм',
-            woodType: 'Сосна',
-            grade: 'A'
-        },
-        {
-            id: '2',
-            name: 'Брус',
-            price: 4500,
-            quantity: 1,
-            dimensions: '100x100x6000 мм',
-            woodType: 'Ель',
-            grade: 'B'
-        }
-    ]);
-
-    const handleUpdateQuantity = (id: string, quantity: number) => {
-        setCartItems(prev => prev.map(item =>
-            item.id === id ? { ...item, quantity } : item
-        ));
-    };
-
-    const handleRemoveItem = (id: string) => {
-        setCartItems(prev => prev.filter(item => item.id !== id));
-    };
+    const {
+        state,
+        openCart,
+        closeCart,
+        updateQuantity,
+        removeItem,
+        getTotalItems
+    } = useCart();
 
     return (
         <>
             <div className={styles.topRow}>
                 <div className={styles.contactsHeader}>
                     <span className={styles.topItems}>
-                        место компании
+                        Кузовлевский тракт, 2Б ст31
                     </span>
                     <span className={styles.topItems}>
                         adress_email.ru
@@ -65,14 +42,23 @@ const Header: React.FC = () => {
                         <a href="/documents" className={styles.navLink}>Документация</a>
                     </nav>
                     <button
-                        onClick={() => setIsCartOpen(true)}
-                        className={styles.buyButton}><img src={shopIcon} alt="Иконка корзины" className={styles.shopIcon} />Корзина</button>
+                        onClick={openCart}
+                        className={styles.buyButton}
+                    >
+                        <img src={shopIcon} alt="Иконка корзины" className={styles.shopIcon} />
+                        Корзина
+                        {getTotalItems() > 0 && (
+                            <span className={styles.cartBadge}>
+                                {getTotalItems()}
+                            </span>
+                        )}
+                    </button>
                     <ShopingCart
-                        isOpen={isCartOpen}
-                        onClose={() => setIsCartOpen(false)}
-                        items={cartItems}
-                        onUpdateQuantity={handleUpdateQuantity}
-                        onRemoveItem={handleRemoveItem}
+                        isOpen={state.isOpen}
+                        onClose={closeCart}
+                        items={state.items}
+                        onUpdateQuantity={updateQuantity}
+                        onRemoveItem={removeItem}
                     />
                 </div>
             </div>

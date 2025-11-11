@@ -1,23 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './ShopingCart.module.css';
-
-export interface CartItem {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    dimensions: string;
-    woodType: string;
-    grade: string;
-}
-
-interface ShopingCartProps {
-    isOpen?: boolean;
-    onClose?: () => void;
-    items?: CartItem[];
-    onUpdateQuantity?: (id: string, quantity: number) => void;
-    onRemoveItem?: (id: string) => void;
-}
+import type { ShopingCartProps } from '@types';
 
 const ShopingCart: React.FC<ShopingCartProps> = ({
     isOpen = false,
@@ -26,25 +9,6 @@ const ShopingCart: React.FC<ShopingCartProps> = ({
     onUpdateQuantity,
     onRemoveItem
 }) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        if (isOpen) {
-            setIsVisible(true);
-        } else {
-            const timer = setTimeout(() => {
-                setIsVisible(false);
-            }, 300);
-
-            return () => clearTimeout(timer);
-        }
-    }, [isOpen]);
-
-
-    const handleClose = () => {
-        if (onClose) onClose();
-    };
-
     const handleIncreaseQuantity = (id: string) => {
         const item = items.find(item => item.id === id);
         if (item && onUpdateQuantity) {
@@ -79,7 +43,7 @@ const ShopingCart: React.FC<ShopingCartProps> = ({
         }).format(price);
     };
 
-    if (!isVisible && !isOpen) {
+    if (!isOpen) {
         return null;
     }
 
@@ -87,7 +51,7 @@ const ShopingCart: React.FC<ShopingCartProps> = ({
         <>
             <div
                 className={`${styles.overlay} ${isOpen ? styles.overlayVisible : ''}`}
-                onClick={handleClose}
+                onClick={onClose}
             />
 
             <div
@@ -97,7 +61,7 @@ const ShopingCart: React.FC<ShopingCartProps> = ({
                     <h2 className={styles.cartTitle}>Корзина пиломатериалов</h2>
                     <button
                         className={styles.closeButton}
-                        onClick={handleClose}
+                        onClick={onClose}
                         aria-label="Закрыть корзину"
                     >
                         ×

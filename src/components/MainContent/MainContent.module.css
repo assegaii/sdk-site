@@ -306,7 +306,7 @@
 }
 
 .addToCartBtn:hover:not(:disabled) {
-    background: #1e3a23;
+    background: #553026;
 }
 
 .addToCartBtn:disabled {
@@ -430,7 +430,7 @@
 }
 
 .quantityBtn:hover:not(:disabled) {
-    background: #1e3a23;
+    background: #553026;
 }
 
 .quantityBtn:disabled {
@@ -489,7 +489,7 @@
 }
 
 .addToCartBtn:hover {
-    background: #1e3a23;
+    background: #553026;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

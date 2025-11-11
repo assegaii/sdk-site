@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './AboutUs.module.css';
-import QualityIcon from '../../assets/icons/quality-icon.png';
-import PricesIcon from '../../assets/icons/prices-icon.png';
-import AdviceIcon from '../../assets/icons/advice-icon.png';
-import DeliveryIcon from '../../assets/icons/delivery-icon.png';
+import QualityIcon from '@assets/icons/quality-icon.png';
+import PricesIcon from '@assets/icons/prices-icon.png';
+import AdviceIcon from '@assets/icons/advice-icon.png';
+import DeliveryIcon from '@assets/icons/delivery-icon.png';
 
 const AboutUs: React.FC = () => {
     return (

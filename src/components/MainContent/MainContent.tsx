@@ -1,42 +1,31 @@
 import React, { useState } from 'react';
+
+import { useCart } from '@contexts/CartContext';
+
 import styles from './MainContent.module.css';
-import FeedbackCarousel from '../FeedbackCarousel/FeedbackCarousel';
-import AboutUs from '../AboutUs/AboutUs';
+import FeedbackCarousel from '@components/FeedbackCarousel/FeedbackCarousel';
+import AboutUs from '@components/AboutUs/AboutUs';
 
 // Импорты изображений
-import Plank from '../../assets/product-image/plank.png';
-import Plywood from '../../assets/product-image/plywood.png';
-import RoundWood from '../../assets/product-image/round-wood.png';
-import Veneer from '../../assets/product-image/veneer.png';
-import WoodChips from '../../assets/product-image/wood-chips.png';
+import Plank from '@assets/product-image/plank.png';
+import Plywood from '@assets/product-image/plywood.png';
+import RoundWood from '@assets/product-image/round-wood.png';
+import Veneer from '@assets/product-image/veneer.png';
+import WoodChips from '@assets/product-image/wood-chips.png';
 
-// Типы данных
-interface ProductVariant {
-    id: string;
-    dimensions: string;
-    woodType: string;
-    grade: string;
-    price: number;
-    stock: number;
-}
-
-interface Product {
-    id: number;
-    name: string;
-    image: string;
-    description: string;
-    variants: ProductVariant[];
-}
+// Импорты типов
+import type { Product, ProductVariant, ProductState } from '@types';
 
 const MainContent: React.FC = () => {
+    // Используем типы из общего файла
     const [expandedProductId, setExpandedProductId] = useState<number | null>(null);
     const [selectedVariants, setSelectedVariants] = useState<{ [key: number]: string }>({});
-    // Меняем структуру: храним количество для каждого варианта отдельно
     const [quantities, setQuantities] = useState<{ [variantId: string]: number }>({});
 
-    // Mock данные
+    const { addItem } = useCart();
+
+    // Mock данные с использованием импортированных типов
     const products: Product[] = [
-        // ... твои продукты остаются без изменений
         {
             id: 1,
             name: "Доска",
@@ -146,13 +135,9 @@ const MainContent: React.FC = () => {
 
         if (!variant) return;
 
-        // TODO: Замени на вызов контекста корзины
-        console.log('Добавляем в корзину:', {
-            product: product.name,
-            variant: variant,
-            quantity: quantity
-        });
+        addItem(product, variant, quantity);
 
+        // Можно показать уведомление вместо alert
         alert(`Добавлено в корзину: ${product.name} - ${variant.dimensions} (${quantity} шт)`);
     };
 
@@ -211,7 +196,7 @@ const MainContent: React.FC = () => {
                                 {expandedProductId === product.id && (
                                     <div className={styles.fullWidthTable}>
                                         <div className={styles.tableContainer}>
-                                            <h3 className={styles.tableTitle}>Характеристики {product.name}</h3>
+                                            <h3 className={styles.tableTitle}>{product.name}</h3>
                                             <div className={styles.tableWrapper}>
                                                 <table className={styles.parametersTable}>
                                                     <thead>

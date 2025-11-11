@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './FeedbackCarousel.module.css';
 
-import sawIcon from '../../assets/saw-dot.svg';
+import sawIcon from '@assets/saw-dot.svg';
 
 const FeedbackCarousel: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
