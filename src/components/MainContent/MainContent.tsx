@@ -14,7 +14,7 @@ import Veneer from '@assets/product-image/veneer.png';
 import WoodChips from '@assets/product-image/wood-chips.png';
 
 // Импорты типов
-import type { Product, ProductVariant, ProductState } from '@types';
+import type { Product, ProductVariant } from '@types';
 
 const MainContent: React.FC = () => {
     // Используем типы из общего файла
