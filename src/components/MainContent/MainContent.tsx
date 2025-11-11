@@ -6,7 +6,7 @@ import FeedbackCarousel from '@components/FeedbackCarousel/FeedbackCarousel';
 import AboutUs from '@components/AboutUs/AboutUs';
 import ProductSection from '@components/ProductSection/ProductSection';
 import PhoneButton from '@components/PhoneButton/PhoneButton';
-import CallbackModal from '@/components/CalBackModal/CallBackModal';
+import CallbackModal from '@components/CallBackModal/CallBackModal';
 import MapSection from '@components/MapSection/MapSection';
 
 const MainContent: React.FC = () => {
