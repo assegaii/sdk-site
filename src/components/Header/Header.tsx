@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import styles from './Header.module.css';
 
 import logo from '@assets/logo.png';
 import shopIcon from '@assets/icons/shopIcon.png';
-import ShopingCart from '@components/ShopingCart/ShopingCart';
-import { useCart } from '@contexts/CartContext'; // Создадим этот алиас
+import ShopingCart from '@components/ShopingCart';
+import { useCart } from '@contexts/CartContext';
 
 const Header: React.FC = () => {
     const {
@@ -15,6 +17,16 @@ const Header: React.FC = () => {
         removeItem,
         getTotalItems
     } = useCart();
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
 
     return (
         <>
@@ -36,11 +48,13 @@ const Header: React.FC = () => {
                     <a href="/" className={styles.logoLink}>
                         <img src={logo} alt="Логотип компании" className={styles.logo} />
                     </a>
+
                     <nav className={styles.headerNav}>
-                        <a href="/" className={styles.navLink}>Главная</a>
+                        <Link to="/" className={styles.navLink}>Главная</Link>
                         <a href="/catalog" className={styles.navLink}>Каталог</a>
-                        <a href="/documents" className={styles.navLink}>Документация</a>
+                        <Link to="/documents" className={styles.navLink}>Документация</Link>
                     </nav>
+
                     <button
                         onClick={openCart}
                         className={styles.buyButton}
@@ -53,6 +67,46 @@ const Header: React.FC = () => {
                             </span>
                         )}
                     </button>
+
+                    <div className={styles.mobileMenu}>
+                        <button
+                            onClick={openCart}
+                            className={styles.mobileCartButton}
+                        >
+                            <img src={shopIcon} alt="Иконка корзины" className={styles.mobileCartIcon} />
+                            {getTotalItems() > 0 && (
+                                <span className={styles.mobileCartBadge}>
+                                    {getTotalItems()}
+                                </span>
+                            )}
+                        </button>
+
+                        <div className={styles.menuContainer}>
+                            <button
+                                className={`${styles.menuButton} ${isMenuOpen ? styles.menuButtonActive : ''}`}
+                                onClick={toggleMenu}
+                                aria-label="Меню"
+                            >
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+
+                            {/* Выпадающее меню для мобильных */}
+                            <nav className={`${styles.dropdownMenu} ${isMenuOpen ? styles.dropdownMenuActive : ''}`}>
+                                <Link to="/" className={styles.dropdownLink} onClick={closeMenu}>
+                                    Главная
+                                </Link>
+                                <a href="/catalog" className={styles.dropdownLink} onClick={closeMenu}>
+                                    Каталог
+                                </a>
+                                <Link to="/documents" className={styles.dropdownLink} onClick={closeMenu}>
+                                    Документация
+                                </Link>
+                            </nav>
+                        </div>
+                    </div>
+
                     <ShopingCart
                         isOpen={state.isOpen}
                         onClose={closeCart}

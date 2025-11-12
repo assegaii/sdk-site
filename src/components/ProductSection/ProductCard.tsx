@@ -1,18 +1,8 @@
 import React from 'react';
-import type { Product } from '@types';
+import type { Product, ProductCardProps } from '@types';
 import styles from './ProductSection.module.css';
 
-interface ProductCardProps {
-    product: Product;
-    isExpanded: boolean;
-    selectedVariantId: string | null;
-    currentQuantity: number;
-    onToggleDetails: (productId: number) => void;
-    onVariantSelect: (productId: number, variantId: string) => void;
-    onQuantityChange: (variantId: string, quantity: number) => void;
-    onAddToCart: (product: Product) => void;
-    getSelectedVariant: (productId: number) => any;
-}
+
 
 const ProductCard: React.FC<ProductCardProps> = ({
     product,

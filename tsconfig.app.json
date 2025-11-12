@@ -5,7 +5,7 @@
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "node", "react-router-dom"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -27,6 +27,7 @@
       "paths": {
         "@/*": ["./src/*"],
         "@components/*": ["./src/components/*"],
+        "@components": ["./src/components"],
         "@types": ["./src/types/index"],
         "@assets/*": ["./src/assets/*"],
         "@utils/*": ["./src/utils/*"],

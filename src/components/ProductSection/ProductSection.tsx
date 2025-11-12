@@ -12,11 +12,7 @@ import RoundWood from '@assets/product-image/round-wood.png';
 import Veneer from '@assets/product-image/veneer.png';
 import WoodChips from '@assets/product-image/wood-chips.png';
 
-interface ProductsSectionProps {
-    // Можно добавить пропсы если нужно, например onProductAdd и т.д.
-}
-
-const ProductSection: React.FC<ProductsSectionProps> = () => {
+const ProductSection: React.FC = () => {
     const [expandedProductId, setExpandedProductId] = useState<number | null>(null);
     const [selectedVariants, setSelectedVariants] = useState<{ [key: number]: string }>({});
     const [quantities, setQuantities] = useState<{ [variantId: string]: number }>({});

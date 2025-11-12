@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './PhoneButton.module.css';
 
-// Импортируем иконку (убедитесь, что у вас есть правильные типы для импорта SVG)
 import phoneIcon from '@assets/icons/phone-icon.svg';
 
-// Типы для пропсов компонента
 interface PhoneButtonProps {
     onClick: () => void;
     position?: {
@@ -26,7 +24,6 @@ const PhoneButton: React.FC<PhoneButtonProps> = ({
     withPulse = true,
     withVibration = true
 }) => {
-    // Формируем стили для позиционирования
     const positionStyle: React.CSSProperties = {
         bottom: position.bottom ? `${position.bottom}px` : undefined,
         right: position.right ? `${position.right}px` : undefined,
@@ -36,7 +33,6 @@ const PhoneButton: React.FC<PhoneButtonProps> = ({
         height: `${size}px`
     };
 
-    // Формируем классы анимаций
     const animationClass = withVibration ? styles.phoneFixedButton : `${styles.phoneFixedButton} ${styles.noVibration}`;
 
     return (

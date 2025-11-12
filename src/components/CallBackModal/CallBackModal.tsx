@@ -14,7 +14,6 @@ const CallbackModal: React.FC<CallbackModalProps> = ({ isOpen, onClose, onSubmit
     const modalRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Обработчик Escape для закрытия
     useEffect(() => {
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === 'Escape' && isOpen) {
@@ -29,7 +28,6 @@ const CallbackModal: React.FC<CallbackModalProps> = ({ isOpen, onClose, onSubmit
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
-            // Фокус на инпут при открытии модалки
             setTimeout(() => inputRef.current?.focus(), 300);
         } else {
             document.body.style.overflow = 'unset';

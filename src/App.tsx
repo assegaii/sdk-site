@@ -1,8 +1,13 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import { CartProvider } from '@contexts/CartContext'
 
-import Header from '@components/Header/Header'
-import Footer from '@components/Footer/Footer'
-import MainContent from '@components/MainContent/MainContent'
+import {
+  Header,
+  Footer,
+  MainContent,
+  Documents
+} from '@components';
 
 
 
@@ -13,11 +18,16 @@ function App() {
 
   return (
     <CartProvider>
-      <div className="App">
-        <Header />
-        <MainContent />
-        <Footer />
-      </div>
+      <Router>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/" element={<MainContent />} />
+            <Route path="/documents" element={<Documents />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
     </CartProvider>
   )
 }

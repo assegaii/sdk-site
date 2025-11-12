@@ -51,7 +51,8 @@ export interface ProductCardProps {
   onToggleDetails: (productId: number) => void;
   onVariantSelect: (productId: number, variantId: string) => void;
   onQuantityChange: (variantId: string, newQuantity: number) => void;
-  onAddToCart: (product: Product, variantId: string, quantity: number) => void;
+  onAddToCart: (product: Product) => void;
+  getSelectedVariant: (productId: number) => any;
 }
 
 export interface ProductState {
@@ -76,7 +77,11 @@ export interface CartContextType {
   getTotalPrice: () => number;
   getTotalItems: () => number;
 }
-
+//Для хедера
+export interface ProductMenuItem {
+  id: number;
+  name: string;
+}
 // Чтото на будущее (его нет)
 export interface ApiProduct {
   id: number;

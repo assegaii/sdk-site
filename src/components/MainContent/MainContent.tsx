@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import styles from './MainContent.module.css';
-import FeedbackCarousel from '@components/FeedbackCarousel/FeedbackCarousel';
-import AboutUs from '@components/AboutUs/AboutUs';
-import ProductSection from '@components/ProductSection/ProductSection';
-import PhoneButton from '@components/PhoneButton/PhoneButton';
-import CallbackModal from '@components/CallbackModal/CallbackModal';
-import MapSection from '@components/MapSection/MapSection';
+import {
+    FeedbackCarousel,
+    AboutUs,
+    ProductSection,
+    PhoneButton,
+    CallbackModal,
+    MapSection
+} from '@components';
 
 const MainContent: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
