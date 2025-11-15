@@ -1,6 +1,8 @@
+.contactsHeader{
+    display: flex;
+}
 .topRow {
     background-color: #7B4538;
-    display: flex;
     justify-content: space-around;
     align-items: center;
     padding-left: 200px;
@@ -104,9 +106,12 @@
 
 /* Адаптивность */
 @media (max-width: 768px) {
+    .contactsHeader{
+        flex-direction: column;
+        height: 33px;
+    }
     .topRow {
-        padding-left: 20px;
-        justify-content: center;
+        height: 70px;
     }
 
     .topItems {
@@ -215,7 +220,7 @@
     }
 
     .menuButtonActive span:nth-child(1) {
-        transform: rotate(45deg) translate(7px, 7px);
+        transform: rotate(45deg) translate(7px, 8px);
     }
 
     .menuButtonActive span:nth-child(2) {
@@ -223,7 +228,7 @@
     }
 
     .menuButtonActive span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -7px);
+        transform: rotate(-47deg) translate(7px, -7px);
     }
 
     .menuButton:hover span {

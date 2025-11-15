@@ -1,8 +1,7 @@
 import React from 'react';
 import type { Product, ProductCardProps } from '@types';
+import config from '@config/api';
 import styles from './ProductSection.module.css';
-
-
 
 const ProductCard: React.FC<ProductCardProps> = ({
     product,
@@ -23,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div className={`${styles.productCard} ${isExpanded ? styles.expanded : ''}`}>
                 <div className={styles.cardImageContainer}>
                     <img
-                        src={product.image}
+                        src={`${config.api.baseURL}${product.image}`}
                         alt={product.name}
                         className={styles.productIcon}
                     />

@@ -13,6 +13,8 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@contexts': path.resolve(__dirname, './src/contexts'),
+      '@services': path.resolve(__dirname, './src/services'),
+      '@config': path.resolve(__dirname, './src/config'),
     },
   },
 })
